@@ -1,0 +1,19 @@
+---
+title: "Security"
+---
+
+### TPAStream-Signature Verification
+
+Also included in the request is a JWT signature that can be used to verify that
+the request has originated from TPA Stream, and not any other party. This header
+is passed in the TPAStream-Signature header of the request. The signature can be
+verified using our SSH RSA public key. The key can be obtained from
+[TPA Stream Keys](https://app.tpastream.com/keys). The JWT hashing algorithm
+used is RS256.
+
+We strongly recommend that you verify our JWT signature as a part of your
+webhook. Examples of how to decode a JWT in several common programming languages
+can be found at [JWT library](https://jwt.io). Note that the JWT library you
+choose must support RS256 (nearly all of them do), and should also support an
+exp check (although you could easily perform this simple expiration date check
+yourself using a UTC timestamp).

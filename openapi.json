@@ -1,0 +1,826 @@
+{
+  "definitions": {
+    "Account": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string", "x-nullable": true }
+      },
+      "type": "object"
+    },
+    "Claim": {
+      "properties": {
+        "amount_allowed": {
+          "description": "Use computed_amount_allowed in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "amount_billed": {
+          "description": "Use computed_amount_billed in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "amount_not_covered": {
+          "description": "Use computed_amount_not_covered in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "amount_paid": {
+          "description": "Use computed_amount_paid in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "amount_paid_other": { "type": "number", "x-nullable": true },
+        "check_date": {
+          "format": "date",
+          "type": "string",
+          "x-nullable": true
+        },
+        "check_number": { "type": "string", "x-nullable": true },
+        "claim_medical_lines": {
+          "items": { "$ref": "#/definitions/ClaimLine" },
+          "type": "array"
+        },
+        "coinsurance_patient": {
+          "description": "Use computed_coinsurance_patient in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "computed_amount_allowed": { "type": "number" },
+        "computed_amount_billed": { "type": "number" },
+        "computed_amount_paid": { "type": "number" },
+        "computed_coinsurance_patient": { "type": "number" },
+        "computed_copayment": { "type": "number" },
+        "computed_patient_responsibility": { "type": "number" },
+        "computed_reduction": { "type": "number" },
+        "copayment": {
+          "description": "Use computed_copayment in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "createddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "dataobject_id": { "type": "integer", "x-nullable": true },
+        "date_column": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "date_of_service": { "$ref": "#/definitions/DateRange" },
+        "discount": {
+          "description": "Use computed_discount in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "eob_date": { "format": "date", "type": "string", "x-nullable": true },
+        "group_name": { "type": "string", "x-nullable": true },
+        "group_number": { "type": "string", "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" },
+        "incurred_value": { "readOnly": true, "type": "number" },
+        "is_incomplete": {
+          "description": "This claim may have incomplete data. If a claim is marked as incomplete, we typically will not send it until it gets marked as complete. Reasons for an incomplete claim include (1) documentation that isn't yet available but we expect it to be in the near future, and (2) if we notice the claim has data redacted for privacy (example: a dependent over 16 years old), but we expect to get this data when a dependent links their account.",
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "last_updated_status": {
+          "description": "Used as an indicator of when the last substantial change happened to this claim. If this date gets updated, we consider it necessary to re-send the claim for processing (in data exports) / flag it as \"unread\" in TPA Stream / etc. Typically this date gets updated when the patient_responsibility or status changes, or otherwise when is_incomplete changes to True.",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "members": {
+          "items": { "$ref": "#/definitions/Member" },
+          "type": "array"
+        },
+        "modifieddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "network": {
+          "enum": ["IN", "OUT", "TIER1", "TIER2"],
+          "type": "string"
+        },
+        "patient_account_number": {
+          "description": "Patient Account Number for Service Provider (used for payments)",
+          "type": "string",
+          "x-nullable": true
+        },
+        "patient_name": { "type": "string", "x-nullable": true },
+        "patient_payer_number": {
+          "description": "Patient Account Number for Carrier",
+          "type": "string",
+          "x-nullable": true
+        },
+        "patient_responsibility": {
+          "description": "Use computed_patient_responsibility in case this field is missing.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "policy_holder": { "$ref": "#/definitions/PolicyHolder" },
+        "processed_on": {
+          "format": "date",
+          "type": "string",
+          "x-nullable": true
+        },
+        "recrawl_requested": {
+          "description": "Attempt to recrawl when True",
+          "type": "boolean"
+        },
+        "reduction": {
+          "description": "This is the amount the deductible was reduced by. Most systems refer to this as 'deductible'. Use computed_reduction in case this field is empty.",
+          "type": "number",
+          "x-nullable": true
+        },
+        "remarks": {
+          "description": "These are the notes for the Claim.",
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider": {
+          "description": "Service Provider Name. This is the physical name, and is provided by the Payer.",
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_address": {
+          "description": "Physical address of Service Provider",
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_billing_address": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_billing_name": {
+          "description": "This is the service_provider's Billing name, which is often different from their physical address name.",
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_billing_npi_number": {
+          "description": "NPI Number of Billing Service Provider",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "service_provider_billing_number": {
+          "description": "Federal Tax ID of Billing Service Provider",
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_billing_phone": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "service_provider_npi_number": {
+          "description": "NPI Number of Service Provider",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "service_provider_number": {
+          "description": "Federal Tax ID of Service Provider",
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "enum": [
+            "In Process",
+            "Processed",
+            "Rejected",
+            "Adjusted",
+            "Partially Approved"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": { "$ref": "#/definitions/ClaimType" },
+        "uuid": { "format": "uuid", "readOnly": true, "type": "string" },
+        "vendor_system_id": {
+          "description": "This field is unique for each Payer. Occasionally TPA Stream may append data to the end of this key to enforce uniqueness, such as the date_of_service, patient_responsibility, etc.",
+          "type": "string"
+        }
+      },
+      "required": ["vendor_system_id"],
+      "type": "object"
+    },
+    "ClaimAPI": {
+      "properties": { "data": { "$ref": "#/definitions/Claim" } },
+      "type": "object"
+    },
+    "ClaimLine": {
+      "properties": {
+        "amount_allowed": { "type": "number", "x-nullable": true },
+        "amount_billed": { "type": "number", "x-nullable": true },
+        "amount_not_covered": { "type": "number", "x-nullable": true },
+        "amount_paid": { "type": "number", "x-nullable": true },
+        "amount_paid_other": { "type": "number", "x-nullable": true },
+        "coinsurance_patient": { "type": "number", "x-nullable": true },
+        "copayment": { "type": "number", "x-nullable": true },
+        "date_of_service": { "$ref": "#/definitions/DateRange" },
+        "days_supply": { "type": "integer", "x-nullable": true },
+        "diagnosis_code": { "type": "string", "x-nullable": true },
+        "discount": { "type": "number", "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" },
+        "national_drug_code": { "type": "string", "x-nullable": true },
+        "patient_responsibility": { "type": "number", "x-nullable": true },
+        "prescription_type_id": { "type": "integer", "x-nullable": true },
+        "prescription_type_str": { "readOnly": true, "type": "string" },
+        "procedure_code": { "type": "string", "x-nullable": true },
+        "procedure_name": { "type": "string", "x-nullable": true },
+        "quantity": { "type": "number", "x-nullable": true },
+        "reduction": { "type": "number", "x-nullable": true },
+        "total_patient_responsibility": { "type": "number" },
+        "uuid": { "format": "uuid", "readOnly": true, "type": "string" },
+        "vendor_system_id": { "type": "string" }
+      },
+      "required": ["vendor_system_id"],
+      "type": "object"
+    },
+    "ClaimPagination": {
+      "properties": {
+        "data": { "$ref": "#/definitions/Claim" },
+        "has_next": { "type": "boolean" },
+        "has_prev": { "type": "boolean" },
+        "next_num": { "type": "integer" },
+        "page": { "type": "integer" },
+        "pages": { "type": "integer" },
+        "per_page": { "type": "integer" },
+        "prev_num": { "type": "integer" },
+        "total": { "type": "integer" }
+      },
+      "type": "object"
+    },
+    "ClaimPagination1": {
+      "properties": {
+        "data": { "$ref": "#/definitions/Claim" },
+        "has_next": { "type": "boolean" },
+        "has_prev": { "type": "boolean" },
+        "next_num": { "type": "integer" },
+        "page": { "type": "integer" },
+        "pages": { "type": "integer" },
+        "per_page": { "type": "integer" },
+        "prev_num": { "type": "integer" },
+        "total": { "type": "integer" }
+      },
+      "type": "object"
+    },
+    "ClaimType": {
+      "properties": {
+        "name": {
+          "enum": ["medical", "dental", "rx", "vision", "facility"],
+          "type": "string"
+        },
+        "type_id": { "enum": [1, 2, 3, 4, 5], "type": "integer" }
+      },
+      "type": "object"
+    },
+    "DateRange": {
+      "properties": {
+        "bounds": { "type": "string" },
+        "end": { "format": "date", "type": "string", "x-nullable": true },
+        "start": { "format": "date", "type": "string", "x-nullable": true }
+      },
+      "type": "object"
+    },
+    "Dependent": {
+      "properties": {
+        "address": { "type": "string", "x-nullable": true },
+        "alegeus_key": { "type": "string", "x-nullable": true },
+        "createddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "date_of_birth": {
+          "format": "date",
+          "type": "string",
+          "x-nullable": true
+        },
+        "email": { "type": "string", "x-nullable": true },
+        "first_name": { "type": "string", "x-nullable": true },
+        "gender": { "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" },
+        "last_name": { "type": "string", "x-nullable": true },
+        "middle_name": { "type": "string", "x-nullable": true },
+        "modifieddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "ssn": { "type": "string", "x-nullable": true }
+      },
+      "type": "object"
+    },
+    "Employer": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" },
+        "reimbursement_policy": {}
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "Employer1": {
+      "properties": {
+        "archived": { "type": "boolean" },
+        "eligible_payers": {
+          "items": { "$ref": "#/definitions/Payer1" },
+          "readOnly": true,
+          "type": "array"
+        },
+        "email_automation": { "type": "boolean" },
+        "employer_id": { "readOnly": true, "type": "integer" },
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" },
+        "payers": {
+          "items": { "$ref": "#/definitions/Payer" },
+          "readOnly": true,
+          "type": "array"
+        },
+        "slug": { "type": "string", "x-nullable": true },
+        "support_email_derived": { "readOnly": true, "type": "string" },
+        "support_phone_derived": { "readOnly": true, "type": "string" },
+        "tenant_logo_derived": { "readOnly": true, "type": "string" },
+        "tenant_name_derived": { "readOnly": true, "type": "string" }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "Member": {
+      "properties": {
+        "email": { "type": "string", "x-nullable": true },
+        "employer": { "$ref": "#/definitions/Employer" },
+        "first_name": { "type": "string", "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" },
+        "last_name": { "type": "string", "x-nullable": true },
+        "system_key": {
+          "additionalProperties": { "type": "string" },
+          "example": {
+            "employee_navigator": "281BX1",
+            "wex_healthcloud": "CO11B"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Member1": {
+      "properties": {
+        "accounts": {
+          "items": { "$ref": "#/definitions/Account" },
+          "type": "array"
+        },
+        "address": { "type": "string", "x-nullable": true },
+        "alegeus_key": { "type": "string", "x-nullable": true },
+        "archived": { "type": "boolean" },
+        "archived_date": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "archivedby": {
+          "allOf": [{ "$ref": "#/definitions/User" }],
+          "readOnly": true
+        },
+        "can_make_claim_requests": { "readOnly": true, "type": "boolean" },
+        "can_use_portal": { "readOnly": true, "type": "boolean" },
+        "createddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "date_of_birth": {
+          "format": "date",
+          "type": "string",
+          "x-nullable": true
+        },
+        "dependents": {
+          "items": { "$ref": "#/definitions/Dependent" },
+          "type": "array"
+        },
+        "email": { "type": "string", "x-nullable": true },
+        "employer": { "$ref": "#/definitions/Employer1" },
+        "first_name": { "type": "string", "x-nullable": true },
+        "first_name_derived": { "readOnly": true, "type": "string" },
+        "full_name_derived": { "readOnly": true, "type": "string" },
+        "gender": {},
+        "hire_term_daterange": {
+          "allOf": [{ "$ref": "#/definitions/DateRange" }],
+          "x-nullable": true
+        },
+        "id": { "readOnly": true, "type": "integer" },
+        "last_name": { "type": "string", "x-nullable": true },
+        "last_name_derived": { "readOnly": true, "type": "string" },
+        "modifieddate": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string",
+          "x-nullable": true
+        },
+        "phone_home": { "x-nullable": true },
+        "phone_mobile": { "x-nullable": true },
+        "ssn": {
+          "maxLength": 11,
+          "minLength": 9,
+          "type": "string",
+          "x-nullable": true
+        },
+        "tenant": { "$ref": "#/definitions/Tenant" },
+        "unread_count": { "readOnly": true, "type": "integer" },
+        "vendor_members": {
+          "items": { "$ref": "#/definitions/VendorMember" },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MemberAPI": {
+      "properties": { "data": { "$ref": "#/definitions/Member1" } },
+      "type": "object"
+    },
+    "MemberPagination": {
+      "properties": {
+        "data": { "$ref": "#/definitions/Member1" },
+        "has_next": { "type": "boolean" },
+        "has_prev": { "type": "boolean" },
+        "next_num": { "type": "integer" },
+        "page": { "type": "integer" },
+        "pages": { "type": "integer" },
+        "per_page": { "type": "integer" },
+        "prev_num": { "type": "integer" },
+        "total": { "type": "integer" }
+      },
+      "type": "object"
+    },
+    "Payer": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" },
+        "short_name": { "type": "string", "x-nullable": true }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "Payer1": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" },
+        "retriever": { "type": "string" },
+        "short_name": { "type": "string", "x-nullable": true }
+      },
+      "required": ["name", "retriever"],
+      "type": "object"
+    },
+    "PolicyHolder": {
+      "properties": {
+        "first_name": { "type": "string", "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" },
+        "last_name": { "type": "string", "x-nullable": true }
+      },
+      "type": "object"
+    },
+    "Tenant": {
+      "properties": {
+        "alegeus_key_enabled": { "type": "boolean" },
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" },
+        "tenant_id": { "readOnly": true, "type": "integer" },
+        "vendor_tenants": {
+          "items": { "$ref": "#/definitions/VendorTenant1" },
+          "type": "array"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "User": {
+      "properties": {
+        "email": { "type": "string", "x-nullable": true },
+        "id": { "readOnly": true, "type": "integer" }
+      },
+      "type": "object"
+    },
+    "Vendor": {
+      "properties": {
+        "code": { "type": "string" },
+        "id": { "readOnly": true, "type": "integer" },
+        "name": { "type": "string" }
+      },
+      "required": ["code", "name"],
+      "type": "object"
+    },
+    "VendorMember": {
+      "properties": {
+        "key": { "type": "string" },
+        "vendor_tenant": { "$ref": "#/definitions/VendorTenant" }
+      },
+      "type": "object"
+    },
+    "VendorTenant": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "label": { "type": "string", "x-nullable": true },
+        "vendor": { "$ref": "#/definitions/Vendor" }
+      },
+      "type": "object"
+    },
+    "VendorTenant1": {
+      "properties": {
+        "id": { "readOnly": true, "type": "integer" },
+        "key_enabled": { "type": "boolean" },
+        "label": { "type": "string", "x-nullable": true },
+        "vendor": { "$ref": "#/definitions/Vendor" }
+      },
+      "type": "object"
+    }
+  },
+  "info": { "title": "TPA Stream API", "version": "" },
+  "paths": {
+    "/api/v2/claims": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClaimPagination" }
+          }
+        }
+      }
+    },
+    "/api/v2/claims/{claim_medical_id}": {
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "claim_medical_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClaimAPI" }
+          }
+        }
+      }
+    },
+    "/api/v2/employer/{employer_id}/member": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "employer_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/MemberPagination" }
+          }
+        }
+      }
+    },
+    "/api/v2/employer/{employer_id}/member/{member_id}": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "member_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "employer_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/MemberAPI" }
+          }
+        }
+      }
+    },
+    "/api/v2/member": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/MemberPagination" }
+          }
+        }
+      }
+    },
+    "/api/v2/member/{member_id}": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "member_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/MemberAPI" }
+          }
+        }
+      }
+    },
+    "/api/v2/policy_holder/{policy_holder_id}/claims": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "policy_holder_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClaimPagination" }
+          }
+        }
+      }
+    },
+    "/api/v2/policy_holder/{policy_holder_id}/claims/{claim_medical_id}": {
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "policy_holder_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "claim_medical_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClaimAPI" }
+          }
+        }
+      }
+    },
+    "/api/v2/vendor-tenant/{vendor_tenant_label}/employer/{employer_key}/member/{member_key}/claims": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "member_key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "vendor_tenant_label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "employer_key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClaimPagination1" }
+          }
+        }
+      }
+    }
+  },
+  "swagger": "2.0"
+}

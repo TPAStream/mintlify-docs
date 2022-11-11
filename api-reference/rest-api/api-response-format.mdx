@@ -1,0 +1,21 @@
+---
+title: "API Response Format"
+---
+
+Each API endpoint, upon success, will return an object with the entity (or
+entities) in the data key. If the endpoint is paginated, it will also contain a
+number of other pagination related fields:
+
+```json
+{
+  "data": [], // or {} for a single entity
+  "has_next": true,
+  "has_prev": false,
+  "next_num": 2,
+  "page": 1,
+  "pages": 123,
+  "per_page": 1000,
+  "prev_num": 0,
+  "total": 122901
+}
+```

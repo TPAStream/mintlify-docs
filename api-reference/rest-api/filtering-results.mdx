@@ -1,0 +1,12 @@
+---
+title: "Filtering and Paging Through Results"
+---
+
+Most API endpoints have enforced pagination. There are currently no globally
+defined upper limits to how much can be requested per_page, but please try to
+maintain a healthy balance between number of requests and amount of data
+requested via per_page with each request. When pulling large amounts of data, we
+recommend starting with per_page=1000 and optimizing as necessary. Please
+contact [support@tpastream.com](mailto:support@tpastream.com) if you intend to
+pull large amounts of data, as we can help define a strategy or custom endpoint
+to better serve both your needs & ours.
