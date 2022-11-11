@@ -1,0 +1,19 @@
+---
+title: "Android Example"
+---
+
+In Android, you can implement the JavaScript SDK by creating an html file in
+your assets folder that loads the SDK, then loading it in a WebView. Here’s a
+simple example implementation in Java.
+
+```java
+public class ViewWeb extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.content);
+        WebView webview = (WebView) findViewById(R.id.webView);
+        webview.loadUrl("file:///android_asset/stream-connect.html");
+    }
+}
+```

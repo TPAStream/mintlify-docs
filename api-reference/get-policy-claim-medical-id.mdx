@@ -1,0 +1,123 @@
+---
+title: "Claim Policy Holder / Medical ID"
+openapi: "GET /api/v2/policy_holder/{policy_holder_id}/claims/{claim_medical_id}"
+---
+
+<ResponseExample>
+```json
+{
+  "data": {
+    "amount_allowed": 0,
+    "amount_billed": 0,
+    "amount_not_covered": 0,
+    "amount_paid": 0,
+    "amount_paid_other": 0,
+    "check_date": "2022-10-25",
+    "check_number": "string",
+    "claim_medical_lines": [
+      {
+        "amount_allowed": 0,
+        "amount_billed": 0,
+        "amount_not_covered": 0,
+        "amount_paid": 0,
+        "amount_paid_other": 0,
+        "coinsurance_patient": 0,
+        "copayment": 0,
+        "date_of_service": {
+          "bounds": "string",
+          "end": "2022-10-25",
+          "start": "2022-10-25"
+        },
+        "days_supply": 0,
+        "diagnosis_code": "string",
+        "discount": 0,
+        "id": 0,
+        "national_drug_code": "string",
+        "patient_responsibility": 0,
+        "prescription_type_id": 0,
+        "prescription_type_str": "string",
+        "procedure_code": "string",
+        "procedure_name": "string",
+        "quantity": 0,
+        "reduction": 0,
+        "total_patient_responsibility": 0,
+        "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "vendor_system_id": "string"
+      }
+    ],
+    "coinsurance_patient": 0,
+    "computed_amount_allowed": 0,
+    "computed_amount_billed": 0,
+    "computed_amount_paid": 0,
+    "computed_coinsurance_patient": 0,
+    "computed_copayment": 0,
+    "computed_patient_responsibility": 0,
+    "computed_reduction": 0,
+    "copayment": 0,
+    "createddate": "2022-10-25T17:44:38.776Z",
+    "dataobject_id": 0,
+    "date_column": "2022-10-25T17:44:38.776Z",
+    "date_of_service": {
+      "bounds": "string",
+      "end": "2022-10-25",
+      "start": "2022-10-25"
+    },
+    "discount": 0,
+    "eob_date": "2022-10-25",
+    "group_name": "string",
+    "group_number": "string",
+    "id": 0,
+    "incurred_value": 0,
+    "is_incomplete": true,
+    "last_updated_status": "2022-10-25T17:44:38.776Z",
+    "members": [
+      {
+        "email": "string",
+        "employer": {
+          "id": 0,
+          "name": "string"
+        },
+        "first_name": "string",
+        "id": 0,
+        "last_name": "string",
+        "system_key": {
+          "employee_navigator": "281BX1",
+          "wex_healthcloud": "CO11B"
+        }
+      }
+    ],
+    "modifieddate": "2022-10-25T17:44:38.776Z",
+    "network": "IN",
+    "patient_account_number": "string",
+    "patient_name": "string",
+    "patient_payer_number": "string",
+    "patient_responsibility": 0,
+    "policy_holder": {
+      "first_name": "string",
+      "id": 0,
+      "last_name": "string"
+    },
+    "processed_on": "2022-10-25",
+    "recrawl_requested": true,
+    "reduction": 0,
+    "remarks": "string",
+    "service_provider": "string",
+    "service_provider_address": "string",
+    "service_provider_billing_address": "string",
+    "service_provider_billing_name": "string",
+    "service_provider_billing_npi_number": 0,
+    "service_provider_billing_number": "string",
+    "service_provider_billing_phone": "string",
+    "service_provider_npi_number": 0,
+    "service_provider_number": "string",
+    "status": "In Process",
+    "type": {
+      "name": "medical",
+      "type_id": 1
+    },
+    "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "vendor_system_id": "string"
+  }
+}
+```
+</ResponseExample>

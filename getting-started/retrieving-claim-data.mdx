@@ -1,0 +1,15 @@
+---
+title: "Retrieving Claim Data"
+---
+
+Typically we begin receiving a participants claims within a minute or so after
+they connect their account using our Client Library. It can take anywhere from
+several minutes to several hours for us to receive all their claims, which are
+usually ordered by newest claims first.
+
+There are several ways for you to get Claim Data into your application. If you
+want them as soon as possible, the quickest way to get them is by implementing
+our [Connect Claim Webhook](tpa-stream-connect/webhooks/claim). You can also
+pull claims on demand using our [REST API](). Additionally, we can setup a daily
+CSV file feed to send all new claims via sFTP, FTPS, or to an S3 bucket. Contact
+[sales@tpastream.com](mailto:sales@tpastream.com) to learn more.

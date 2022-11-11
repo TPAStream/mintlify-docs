@@ -1,0 +1,119 @@
+---
+title: "Get Employer ID / Member"
+openapi: "GET /api/v2/employer/{employer_id}/member"
+---
+
+<ResponseExample>
+```json
+{
+  "data": {
+    "accounts": [
+      {
+        "id": 0,
+        "name": "string"
+      }
+    ],
+    "address": "string",
+    "alegeus_key": "string",
+    "archived": true,
+    "archived_date": "2022-10-25T17:05:03.047Z",
+    "can_make_claim_requests": true,
+    "can_use_portal": true,
+    "createddate": "2022-10-25T17:05:03.047Z",
+    "date_of_birth": "2022-10-25",
+    "dependents": [
+      {
+        "address": "string",
+        "alegeus_key": "string",
+        "createddate": "2022-10-25T17:05:03.047Z",
+        "date_of_birth": "2022-10-25",
+        "email": "string",
+        "first_name": "string",
+        "id": 0,
+        "last_name": "string",
+        "middle_name": "string",
+        "modifieddate": "2022-10-25T17:05:03.047Z",
+        "ssn": "string"
+      }
+    ],
+    "email": "string",
+    "employer": {
+      "archived": true,
+      "eligible_payers": [
+        {
+          "id": 0,
+          "name": "string",
+          "retriever": "string",
+          "short_name": "string"
+        }
+      ],
+      "email_automation": true,
+      "employer_id": 0,
+      "id": 0,
+      "name": "string",
+      "payers": [
+        {
+          "id": 0,
+          "name": "string",
+          "short_name": "string"
+        }
+      ],
+      "slug": "string",
+      "support_email_derived": "string",
+      "support_phone_derived": "string",
+      "tenant_logo_derived": "string",
+      "tenant_name_derived": "string"
+    },
+    "first_name": "string",
+    "first_name_derived": "string",
+    "full_name_derived": "string",
+    "id": 0,
+    "last_name": "string",
+    "last_name_derived": "string",
+    "modifieddate": "2022-10-25T17:05:03.047Z",
+    "ssn": "string",
+    "tenant": {
+      "alegeus_key_enabled": true,
+      "id": 0,
+      "name": "string",
+      "tenant_id": 0,
+      "vendor_tenants": [
+        {
+          "id": 0,
+          "key_enabled": true,
+          "label": "string",
+          "vendor": {
+            "code": "string",
+            "id": 0,
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "unread_count": 0,
+    "vendor_members": [
+      {
+        "key": "string",
+        "vendor_tenant": {
+          "id": 0,
+          "label": "string",
+          "vendor": {
+            "code": "string",
+            "id": 0,
+            "name": "string"
+          }
+        }
+      }
+    ]
+  },
+  "has_next": true,
+  "has_prev": true,
+  "next_num": 0,
+  "page": 0,
+  "pages": 0,
+  "per_page": 0,
+  "prev_num": 0,
+  "total": 0
+}
+```
+</ResponseExample>

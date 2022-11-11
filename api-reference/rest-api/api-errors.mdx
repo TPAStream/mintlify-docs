@@ -1,0 +1,22 @@
+---
+title: "API Errors"
+---
+
+In the event that there is an error, our response will have a key of message. It
+may contain some other additional information depending on the nature of the
+error. If the error is an unexpected error (and raises an exception in our
+system), it will also contain an event_id. If you see an event_id, then our
+engineers are notified that there is an issue.
+
+We make every effort to provide meaningful HTTP status codes and messages when
+there is an error. Please do not hesitate to contact us regarding your usage of
+our API by emailing [support@tpastream.com](mailto:support@tpastream.com).
+
+Error responses will look something like this:
+
+```json
+{
+  "message": "There was an error and hopefully this is useful info.",
+  "event_id": "xxxxxxxxxx"
+}
+```
