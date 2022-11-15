@@ -17,7 +17,7 @@ Notes for users in the configuration block:
 - A user must have a first and last name provided.
 - A user must have a unique email.
 
-For more information on configuration objects see our [Client Usage Docs](client-usage.md).
+For more information on configuration objects see our [Client Usage Docs](client-usage).
 
 ## How do I make test users for the SDK (A Useful Gmail Trick)?
 
@@ -31,11 +31,11 @@ youremail@gmail.com -> youremail+testingsdk@gmail.com
 
 ## I'd like to use React Native
 
-See our [React Native Docs](../sdk-hook/docs/README.md)
+See our [React Native Docs](./sdk-hook)
 
 ## I'd like to create a more customized flow for how a user enters credentials and validation.
 
-The default recommendation for customizing the SDK flow is to use the various sdk [Callbacks](client-usage.md#callbacks).
+The default recommendation for customizing the SDK flow is to use the various sdk [Callbacks](client-usage#callbacks).
 
 The SDK renders various steps with default templates which should be editted post render using JS and CSS. However, if you would like
 to create more customized widgets it is possible to turn off the default rendering using the various `renderXStep` values within the
@@ -45,25 +45,25 @@ If you are to turn of the default template rendering, the callbacks associated w
 objects in their parameters which will allow an implementor to mirror all of the functionality previously defined in the default
 template.
 
-Each of the provided information is present in the [Callbacks](client-usage.md#callbacks) docs.
+Each of the provided information is present in the [Callbacks](client-usage#callbacks) docs.
 
 ## How do I use the data from the SDK?
 
 The StreamConnect SDK is designed to take in carrier credentials, save them to the TPAStream sytem, and then validate the credentials.
-If you are implementing the whole Stream Connect flow, including interfacing with the TPAStream API and using TPAStream webhooks, you will find the [doneEasyEnroll](client-usage.md#doneeasyenroll) callback to hold the main pieces of information you need.
+If you are implementing the whole Stream Connect flow, including interfacing with the TPAStream API and using TPAStream webhooks, you will find the [doneEasyEnroll](client-usage#doneeasyenroll) callback to hold the main pieces of information you need.
 
 There we define specifically a `policyHolder` which can be thought of as the carrier credentials that were just submitted.
 This `policyHolder` will have:
 
 - An `policy_holder_id` which is its unique identifier in TPAStream
-- A `login_problem` which will define the state of the credentials. See [doneEasyEnroll](client-usage.md#doneeasyenroll)
+- A `login_problem` which will define the state of the credentials. See [doneEasyEnroll](client-usage#doneeasyenroll)
 - And a `payer_id` all of which can be useful when implementing the TPAStream Webhooks.
 
 For implementing the TPAStream webhooks to get information on when a new claim is added to TPAStream or when the first crawl of the credentials is completed see our [Webhook Docs](https://developers.tpastream.com/en/latest/connect.html#webhooks)
 
 ## What is the tenant configuration block?
 
-Within the TPAStream configuration examples as well as the [Client Usage Docs](client-usage.md) you might sometimes see
+Within the TPAStream configuration examples as well as the [Client Usage Docs](client-usage) you might sometimes see
 a `tenant` block defined within it. This specific configuraiton option is determined when your `sdkToken` is created.
 
 This can almost always be left blank, unless you are an entity which is managing multiple different tenants within TPAStream.
@@ -82,4 +82,4 @@ own in-house system, simply refer to it as "internal"
 Using the `user` configuration object you can define `memberSystemKey`. This system key will be defined under the same vendor as the
 employer block, since a member can only exist under 1 employer.
 
-See our [Client Usage Docs](client-usage.md) for more information on the `user` object block.
+See our [Client Usage Docs](client-usage) for more information on the `user` object block.

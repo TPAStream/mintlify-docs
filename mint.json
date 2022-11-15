@@ -80,9 +80,9 @@
         "js-sdk/client-usage",
         "js-sdk/fix-credentials",
         "js-sdk/connect-access-token",
-        "js-sdk/sdk-flow",
         "js-sdk/faq",
         "js-sdk/error",
+        "js-sdk/sdk-flow",
         "js-sdk/sdk-hook"
       ]
     },
