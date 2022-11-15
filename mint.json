@@ -27,6 +27,11 @@
   ],
   "anchors": [
     {
+      "name": "JS SDK",
+      "icon": "toolbox",
+      "url": "js-sdk"
+    },
+    {
       "name": "API Reference",
       "icon": "rectangle-terminal",
       "url": "api-reference"
@@ -65,6 +70,20 @@
         "rest-api/api-errors",
         "rest-api/date-ranges",
         "rest-api/filtering-results"
+      ]
+    },
+    {
+      "group": "JavaScript SDK",
+      "pages": [
+        "js-sdk/introduction",
+        "js-sdk/quickstart",
+        "js-sdk/client-usage",
+        "js-sdk/fix-credentials",
+        "js-sdk/connect-access-token",
+        "js-sdk/sdk-flow",
+        "js-sdk/faq",
+        "js-sdk/error",
+        "js-sdk/sdk-hook"
       ]
     },
     {
