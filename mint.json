@@ -44,48 +44,27 @@
   ],
   "navigation": [
     {
-      "group": "Getting Started",
-      "pages": [
-        "getting-started/connecting-health-api",
-        "getting-started/retrieving-claim-data"
-      ]
+      "group": "Home",
+      "pages": ["introduction", "getting-started"]
     },
     {
-      "group": "Client Library",
+      "group": "TPA Stream Connect",
       "pages": [
-        "tpa-stream-connect/client-library/usage",
-        "tpa-stream-connect/client-library/detailed-client-usage-docs",
-        "tpa-stream-connect/client-library/other-links",
-        "tpa-stream-connect/client-library/javascript-client",
-        "tpa-stream-connect/client-library/npm-example",
-        "tpa-stream-connect/client-library/cdn-example",
-        "tpa-stream-connect/client-library/android-example",
-        "tpa-stream-connect/client-library/ios-example",
-        "tpa-stream-connect/client-library/change-log"
-      ]
-    },
-    {
-      "group": "Webhooks",
-      "pages": [
-        "tpa-stream-connect/webhooks/claim",
-        "tpa-stream-connect/webhooks/first-crawl-completion",
-        "tpa-stream-connect/webhooks/request-retries",
-        "tpa-stream-connect/webhooks/security",
-        "tpa-stream-connect/webhooks/example-claim",
-        "tpa-stream-connect/webhooks/example-crawl"
+        "tpa-stream-connect/client-library",
+        "tpa-stream-connect/webhooks"
       ]
     },
     {
       "group": "REST API",
       "pages": [
-        "api-reference/rest-api/authentication",
-        "api-reference/rest-api/security",
-        "api-reference/rest-api/ssh-key",
-        "api-reference/rest-api/gpg-key",
-        "api-reference/rest-api/api-response-format",
-        "api-reference/rest-api/api-errors",
-        "api-reference/rest-api/date-ranges",
-        "api-reference/rest-api/filtering-results"
+        "rest-api/authentication",
+        "rest-api/security",
+        "rest-api/ssh-key",
+        "rest-api/gpg-key",
+        "rest-api/api-response-format",
+        "rest-api/api-errors",
+        "rest-api/date-ranges",
+        "rest-api/filtering-results"
       ]
     },
     {
