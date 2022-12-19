@@ -50,7 +50,7 @@
   "navigation": [
     {
       "group": "Home",
-      "pages": ["introduction", "getting-started"]
+      "pages": ["introduction", "getting-started", "recipes"]
     },
     {
       "group": "TPA Stream Connect",
