@@ -1,0 +1,59 @@
+---
+title: Recipes
+description: "Recipes for Common Tasks using our Development Tools"
+---
+
+
+## How to create a test payer with some claims 
+
+
+1. Using your credentials, log into the TPA Stream admin portal
+2. Create a Test Employer with Test Payer(s)
+    1. On the sidebar, select “Employers” 
+    2. Create a new Employer called “Test Employer”
+    3. Under “Carriers” on the newly created “Test Employer”, add Test Carrier and Test Two Factor Auth Carrier from the drop-down and Save Carrier.
+    4. Under the “Support” tab of your “Test Employer”, click the “Lock” key to make changes
+    5. Under “Internal Key” type “test-employer-key”
+        1. If “Internal Key” does not show up, please contact [support@tpastream.com](mailto:support@tpastream.com)
+3. Create an SDK Key
+    6. On the “Settings” page, go to “Manage SDK Access”
+    7. Generate a new token (or use an existing token if you already have one)
+    8. Click “Save Changes”
+4. Create a test Policy Holder using the SDK
+    9. Initialize the SDK in your application using JavaScript using the Client Usage guide, using the test employer
+        2. [https://github.com/TPAStream/stream-connect-js-sdk/blob/master/docs/client-usage.md#client-usage](https://github.com/TPAStream/stream-connect-js-sdk/blob/master/docs/client-usage.md#client-usage)
+        3. To use the “Test Employer,” you’ll need to use the key created above
+
+            ```json
+            employer: {
+                            systemKey: 'test-employer-key',
+                            vendor: 'internal',
+                            name: 'Test Employer'
+                        },
+            ```
+
+
+    10. Load your application and select the “Test Carrier” or “Test Two Factor Auth Carrier”
+    11. Enter a unique username and password (just make a very unique username and password combination up, it will validate)
+        4. Hint:
+            1. If you include the word “invalid” anywhere in the username (i.e. “invalidbob2135252”), it will test the flow for invalid credentials
+            2. If you include the word “break” anywhere in the username (i.e. “breakme213252153232”), it will simulate an error where we were unable to validate the user’s credentials
+            3. If you include the word “fast” anywhere in the username, it will validate the credentials really fast (useful for testing)
+    12. Click “Submit Credentials” in your application
+5. The Application will create about 5 claims with some random data, firing any Webhooks configured under “Manage Webhook Access” on the Settings page.
+
+
+## How to get all claims for a member
+
+
+1. Using your credentials, log into the TPA Stream admin portal
+2. If you do not already have a working SDK Token
+    1. On the Settings page, click “Manage API Access”
+    2. Click “New API Token”
+    3. Under “email”, put [no-reply@mydomain.com](mailto:no-reply@mydomain.com) or something similar for a domain you have control over
+3. To authenticate an HTTP request, use the API authentication instructions found here: https://developers.tpastream.com/en/latest/api.html#authenticatio
+4. To retrieve all claims for a Member with an id of 123
+    4. [https://app.tpastream.com/api/member/123/claims](https://app.tpastream.com/api/v2/policy_holder/{policy_holder_id}/claims)
+5. To retrieve all claims for a Policy Holder with an id of 321
+    5. [https://app.tpastream.com/api/v2/policy_holder/321/claims](https://app.tpastream.com/api/v2/policy_holder/321/claims)
+6. For other endpoints and details about them, please see [https://app.tpastream.com/swagger-ui](https://app.tpastream.com/swagger-ui)
